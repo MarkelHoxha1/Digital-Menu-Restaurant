@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace DigitalMenuRestourant.Models
+namespace DigitalMenuRestaurant.Models
 {
     public class Dish
     {
@@ -15,9 +15,9 @@ namespace DigitalMenuRestourant.Models
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public DishCategory category { get; set; }
-        public Availability availability { get; set; }
+        public List<Availability> availability { get; set; }
 
         public bool IsAvailable { get; set; }
 

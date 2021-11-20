@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DigitalMenuRestourant.Models
+namespace DigitalMenuRestaurant.Models
 {
     public class DigitalMenuDatabaseSettings : IDigitalMenuDatabaseSettings
     {

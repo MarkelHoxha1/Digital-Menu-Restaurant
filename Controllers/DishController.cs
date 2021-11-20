@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DigitalMenuRestourant.Models;
-using DigitalMenuRestourant.Services;
+using DigitalMenuRestaurant.APIModels;
+using DigitalMenuRestaurant.Models;
+using DigitalMenuRestaurant.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DigitalMenuRestourant.Controllers
+namespace DigitalMenuRestaurant.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -42,6 +43,30 @@ namespace DigitalMenuRestourant.Controllers
             _dishService.Create(dish);
 
             return CreatedAtRoute("GetDish", new { id = dish.Id.ToString() }, dish);
+        }
+
+        [HttpPost("insertmany")]
+        public ActionResult<Dish> InsertMany(List<Dish> dishes)
+        {
+            _dishService.InsertMany(dishes);
+
+            return CreatedAtRoute("InsertMany", new { count = dishes.Count.ToString() });
+        }
+
+        [HttpPost("addAvailability")]
+        public ActionResult<Dish> AddAvailability([FromBody] DishAvailability dishAvailability)
+        {
+            var dish = _dishService.Get(dishAvailability.id);
+
+            if (dish == null)
+            {
+                return NotFound();
+            }
+
+            dish.availability.AddRange(dishAvailability.availability);
+
+            _dishService.Update(dishAvailability.id, dish);
+            return NoContent();
         }
 
         [HttpPost("activatedish/{id}")]

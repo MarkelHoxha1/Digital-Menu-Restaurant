@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DigitalMenuRestourant.Models;
-using DigitalMenuRestourant.Services;
+using DigitalMenuRestaurant.Models;
+using DigitalMenuRestaurant.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,8 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
-namespace DigitalMenuRestourant
+namespace DigitalMenuRestaurant
 {
     public class Startup
     {
@@ -37,6 +38,7 @@ namespace DigitalMenuRestourant
 
             services.AddSingleton<DishService>();
 
+            //Allowing connection with a simple VueJS Application
             services.AddCors(options =>
            {
                options.AddDefaultPolicy(builder =>
@@ -46,6 +48,27 @@ namespace DigitalMenuRestourant
            });
 
             services.AddControllers();
+
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = ".NET Core API, MongoDB Digital Menu Restaurant",
+                    Description = "Swagger surface",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Markel Hoxha",
+                        Email = "markelhoxha5@gmail.com",
+                        Url = new Uri("https://github.com/MarkelHoxha1/Digital-Menu-Restaurant")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT",
+                        Url = new Uri("https://github.com/MarkelHoxha1/Digital-Menu-Restaurant/blob/master/LICENSE")
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +90,16 @@ namespace DigitalMenuRestourant
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "swagger/{documentName}/swagger.json";
+            });
+
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Digital Menu Restaurant v1.0");
             });
         }
     }
