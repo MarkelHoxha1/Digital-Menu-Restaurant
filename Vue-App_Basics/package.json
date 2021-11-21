@@ -1,0 +1,49 @@
+{
+    "name": "digitalrestaurantmenu",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "test:unit": "vue-cli-service test:unit"
+    },
+    "dependencies": {
+        "@okta/okta-auth-js": "^4.0.0",
+        "@vue/cli-plugin-babel": "^4.2.2",
+        "axios": "^0.19.0",
+        "babel-polyfill": "^6.26.0",
+        "core-js": "^3.6.5",
+        "crypto-js": "^3.1.9-1",
+        "jsdoc": "^3.6.3",
+        "jsdoc-plugin-typescript": "^2.0.5",
+        "minimize": "^2.2.0",
+        "pretty": "^2.0.0",
+        "prismjs": "^1.20.0",
+        "vue": "^2.6.11",
+        "vue-class-component": "^7.2.3",
+        "vue-cli": "^2.9.6",
+        "vue-json-editor": "^1.4.0",
+        "vue-loader": "^15.9.2",
+        "vue-prism-editor": "^0.6.1",
+        "vue-property-decorator": "^8.4.1",
+        "vue-router": "^3.1.6",
+        "vue2-editor": "^2.10.2",
+        "vuetify": "^2.2.28",
+        "vuex": "^3.3.0",
+        "vuex-module-decorators": "^0.11.0"
+    },
+    "devDependencies": {
+        "@types/crypto-js": "^3.1.45",
+        "@types/vue2-editor": "^2.6.0",
+        "@vue/cli-plugin-typescript": "^4.2.2",
+        "@vue/cli-plugin-unit-jest": "^4.3.1",
+        "@vue/cli-service": "^4.3.1",
+        "@vue/test-utils": "1.0.0-beta.29",
+        "less": "^3.11.1",
+        "less-loader": "^5.0.0",
+        "typescript": "^3.8.3",
+        "vue-cli-plugin-vuetify": "^2.0.5",
+        "vue-template-compiler": "^2.6.11"
+    }
+}
