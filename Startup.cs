@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DigitalMenuRestaurant.Helper;
 using DigitalMenuRestaurant.Models;
 using DigitalMenuRestaurant.Services;
 using Microsoft.AspNetCore.Builder;
@@ -35,7 +36,7 @@ namespace DigitalMenuRestaurant
 
             services.AddSingleton<IDigitalMenuDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<DigitalMenuDatabaseSettings>>().Value);
-
+            services.AddScoped<ValidateModelAttribute>();
             services.AddSingleton<DishService>();
 
             //Allowing connection with a simple VueJS Application
@@ -46,6 +47,7 @@ namespace DigitalMenuRestaurant
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
+
 
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 

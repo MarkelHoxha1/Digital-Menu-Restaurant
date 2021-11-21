@@ -10,8 +10,6 @@ namespace DigitalMenuRestaurant.Services
         private readonly IMongoCollection<Dish> _dishes;
         private List<Dish> seedData = new List<Dish>();
 
-
-
         public DishService(IDigitalMenuDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
