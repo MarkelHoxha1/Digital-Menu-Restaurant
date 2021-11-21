@@ -18,9 +18,7 @@ namespace DigitalMenuRestaurant.Models
         public double Price { get; set; }
         public DishCategory category { get; set; }
         public List<Availability> availability { get; set; }
-
         public bool IsAvailable { get; set; }
-
         //Time is stored in minutes
         public int TimeToCook { get; set; }
     }

@@ -41,13 +41,13 @@ namespace DigitalMenuRestaurant
             //Allowing connection with a simple VueJS Application
             services.AddCors(options =>
            {
-               options.AddDefaultPolicy(builder =>
-              {
-                  builder.WithOrigins("http://localhost:8080");
-              });
-           });
+               options.AddPolicy("CorsPolicy", builder =>
+                  builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.AddSwaggerGen(s =>
             {
@@ -78,10 +78,11 @@ namespace DigitalMenuRestaurant
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 
-            app.UseCors();
+            
 
             app.UseRouting();
 
